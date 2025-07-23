@@ -31,32 +31,35 @@
           <?php
           ini_set('display_errors', 1);
           ini_set('display_startup_errors', 1);
-          $data = file_get_contents("http://localhost:1347/api/menus?populate=*");
+          $data = file_get_contents("http://localhost:1347/api/menus?populate=*", false, $w_context);
           $data = json_decode($data);
 
           $i = 0;
-          foreach ($data->data as $k => $v) {
-            $title = $v->title;
-            $pages = $v->page;
-            $url = $v->content?->url ?? "#";
-            $class = $pages == null ? "" : "dropdown";
-            ?>
-            <li class="<?= $class ?>"><a href="<?= $url ?>"><?= $title ?></a>
-              <?php if ($pages) { ?>
-                <ul class="dropdown-menu" role="menu">
-                  <?php foreach ($pages as $k => $v):
-                    $title = $v->title;
-                    $url = $v->url ?? "#";
-                    ?>
-                    <li><a href="<?= $url ? "cms.php?page=" . $url : $url ?>"><?= $title ?></a></li>
-                  <?php endforeach; ?>
-                </ul>
+          if ($data?->data) {
+            foreach ($data?->data as $k => $v) {
+              $title = $v->title;
+              $pages = $v->page;
+              $url = $v->content?->url ?? "#";
+              $class = $pages == null ? "" : "dropdown";
+              ?>
+              <li class="<?= $class ?>"><a href="<?= $url ?>"><?= $title ?></a>
+                <?php if ($pages) { ?>
+                  <ul class="dropdown-menu" role="menu">
+                    <?php foreach ($pages as $k => $v):
+                      $title = $v->title;
+                      $url = $v->url ?? "#";
+                      ?>
+                      <li><a href="<?= $url ? "cms.php?page=" . $url : $url ?>"><?= $title ?></a></li>
+                    <?php endforeach; ?>
+                  </ul>
 
-              <?php } ?>
-            </li>
-            <?php
-            $i++;
+                <?php } ?>
+              </li>
+              <?php
+              $i++;
+            }
           }
+
           ?>
 
           <!-- <li class=""><a href="index.php">Beranda</a></li>
