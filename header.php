@@ -2,7 +2,15 @@
   <div class="row">
     <div class="col-lg-12 col-md-12">
       <div class="header_bottom">
-        <div class="header_bottom_left"><img src="images/logoo.png" width="110%"></div>
+        <div class="header_bottom_left">
+          <?php if ($w_logo) {
+            ?>
+            <img src="<?= $w_base_url . $w_logo?->url ?>" width="110%" />
+            <?php
+          }
+          ?>
+
+        </div>
         <!-- <div class="header_bottom_right"><a href="https://pusaka.kemenag.go.id"><img src="images/pusaka_icon.png" width="8%" style="float:right;"></a>-->
         <!-- <a href="#"><img src="images/addbanner_728x90_V1.jpg" alt=""></a> -->
       </div>
