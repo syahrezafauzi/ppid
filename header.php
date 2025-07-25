@@ -31,14 +31,14 @@
           <?php
           ini_set('display_errors', 1);
           ini_set('display_startup_errors', 1);
-          $data = file_get_contents("http://localhost:1347/api/menus?populate=*");
+          $data = file_get_contents($w_base_url . "/api/menus?populate=*");
           $data = json_decode($data);
 
           $i = 0;
           foreach ($data->data as $k => $v) {
             $title = $v->title;
             $pages = $v->page;
-            $url = $v->content?->url ?? "#";
+            $url = $v->content?->url ? "cms.php?page=". $v->content->url : "#";
             $class = $pages == null ? "" : "dropdown";
             ?>
             <li class="<?= $class ?>"><a href="<?= $url ?>"><?= $title ?></a>
