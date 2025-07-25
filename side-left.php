@@ -44,7 +44,7 @@
       <?php
       foreach ($w_sites as $value) {
         ?>
-        <a href="<?=$value?->link?>"><img src="<?=$w_base_url . $value?->icon->url?>" width="30%"><br />
+        <a href="<?=$value?->link?>"><img src="<?=$w_public_url . $value?->icon->url?>" width="30%"><br />
           <?= $value?->text ?></a><br /><br />
         <?php
       }

@@ -5,7 +5,7 @@
         <div class="header_bottom_left">
           <?php if ($w_logo) {
             ?>
-            <img src="<?= $w_base_url . $w_logo?->url ?>" width="110%" />
+            <img src="<?= $w_public_url . $w_logo?->url ?>" width="110%" />
             <?php
           }
           ?>
