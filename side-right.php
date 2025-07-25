@@ -113,7 +113,7 @@ Email: <a href="mailto:<?= $w_email ?>"><?= $w_email ?></a><br />
       <h2> <span class="bold_line"><span></span></span> <span class="solid_line"></span> <a href="#"
                   class="title_text">STATISTIK</a></h2><br />
       <?php
-      $koneksi = mysqli_connect('localhost', 'info1_users1', '@Ptx4869', 'info1_kalender');
+      $koneksi = mysqli_connect('127.0.0.1', 'info1_users1', '@Ptx4869', 'info1_kalender');
       $data = mysqli_query($koneksi, 'select count(id_permohonan) as jml from transaksi_permohonan');
       $data2 = mysqli_query($koneksi, 'select count(id_keberatan) as jml from transaksi_keberatan');
       $data3 = mysqli_query($koneksi, 'select count(id_permohonan) as jml from transaksi_permohonan where status="Telah ditanggapi" OR status="Ditolak"');
