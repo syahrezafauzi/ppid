@@ -12,7 +12,7 @@ Email: <a href="mailto:<?= $w_email ?>"><?= $w_email ?></a><br />
             <?php
             foreach ($w_social_media as $value) {
                   ?>
-                  <a href="<?= $value?->link ?>"><img width="24" height="24" src="<?= $w_base_url . $value?->icon?->url ?>"
+                  <a href="<?= $value?->link ?>"><img width="24" height="24" src="<?= $w_public_url . $value?->icon?->url ?>"
                               width="10%">&ensp;<?= $value?->text ?></a><br />
                   <?php
             }
@@ -29,7 +29,7 @@ Email: <a href="mailto:<?= $w_email ?>"><?= $w_email ?></a><br />
             <?php if ($value?->video) {
                   ?>
                   <video width="90%" controls>
-                        <source src="<?= $w_base_url . $value?->video?->url ?>" type="video/mp4">
+                        <source src="<?= $w_public_url . $value?->video?->url ?>" type="video/mp4">
                         <source src="video/movie.ogg" type="video/ogg">
                         Your browser does not support the video tag.
                   </video><br /><br />
@@ -40,7 +40,7 @@ Email: <a href="mailto:<?= $w_email ?>"><?= $w_email ?></a><br />
             <?php if ($value?->image) {
                   ?>
                   <a href="https://forms.gle/wWRSboxcL5kLRTteA">
-                        <img src="<?= $w_base_url . $value?->image?->icon?->url ?>" width="90%">
+                        <img src="<?= $w_public_url . $value?->image?->icon?->url ?>" width="90%">
                   </a>
                   <br />
                   <br />
@@ -56,8 +56,8 @@ Email: <a href="mailto:<?= $w_email ?>"><?= $w_email ?></a><br />
                               <?php foreach ($value?->slider as $value) {
                                     ?>
                                     <div class="single_iteam">
-                                          <a href="<?= $w_base_url . $value?->url ?>">
-                                                <img src="<?= $w_base_url . $value?->url ?>" width="90%" height="auto" alt="">
+                                          <a href="<?= $w_public_url . $value?->url ?>">
+                                                <img src="<?= $w_public_url . $value?->url ?>" width="90%" height="auto" alt="">
                                           </a>
                                     </div>
                                     <?php
