@@ -18,7 +18,7 @@
                         <div class="single_page_area">
                             <?php
                             $page = $_GET['page'];
-                            $data = file_get_contents("http://localhost:1347/api/menus/view?url=" . $page);
+                            $data = file_get_contents($w_base_url . "/api/menus/view?url=" . $page);
                             $data = json_decode($data);
                             if ($data != null) {
                                 $content = $data[0]->page[0]->content ?? "";
@@ -47,7 +47,7 @@
                                                 ?>
                                                 <tr>
                                                     <td><?= $value->name ?></td>
-                                                    <td><a href="http://localhost:1347<?= $value->src ?>"><i class="fa fa-eye"
+                                                    <td><a href="<?= $w_public_url . $value->src ?>"><i class="fa fa-eye"
                                                                 aria-hidden="true"></i></a></td>
                                                 </tr>
                                                 <?php
@@ -68,7 +68,7 @@
                                     <?php
                                     foreach ($image as $key => $value) {
                                         ?>
-                                        <img src="http://localhost:1347<?= $value ?>">
+                                        <img src="<?=$w_public_url . $value ?>">
                                         <?php
                                     }
                                     ?>
