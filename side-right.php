@@ -2,7 +2,7 @@
 <p>
       <b>Sekretariat PPID Utama</b>
 <div class="text-secondary"><?= $w_address . "<br/>" ?></div>
-Helpdesk PPID: <a href="<?= $w_whatsapp?->link ?>"><?= $w_whatsapp?->text ?></a><br />
+Helpdesk PPID: <a href="<?= @$w_whatsapp?->link ?>"><?= @$w_whatsapp?->text ?></a><br />
 Email: <a href="mailto:<?= $w_email ?>"><?= $w_email ?></a><br />
 </p>
 <?php if ($w_social_media) {
@@ -13,7 +13,7 @@ Email: <a href="mailto:<?= $w_email ?>"><?= $w_email ?></a><br />
             foreach ($w_social_media as $value) {
                   ?>
                   <a href="<?= $value?->link ?>"><img width="24" height="24" src="<?= $w_public_url . $value?->icon?->url ?>"
-                              width="10%">&ensp;<?= $value?->text ?></a><br />
+                              width="10%">&ensp;<?= @$value?->text ?></a><br />
                   <?php
             }
             ?>
