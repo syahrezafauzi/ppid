@@ -12,8 +12,8 @@ Email: <a href="mailto:<?= $w_email ?>"><?= $w_email ?></a><br />
             <?php
             foreach ($w_social_media as $value) {
                   ?>
-                  <a href="<?= $value?->link ?>"><img width="24" height="24" src="<?= $w_public_url . $value?->icon?->url ?>"
-                              width="10%">&ensp;<?= @$value?->text ?></a><br />
+                  <a href="<?= @$value?->url ?>"><img width="24" height="24" src="<?= $w_public_url . $value?->icon?->url ?>"
+                              width="10%">&ensp;<?= @$value?->title ?></a><br />
                   <?php
             }
             ?>
