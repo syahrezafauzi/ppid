@@ -1,6 +1,71 @@
 <!DOCTYPE html>
 <html>
-<?php include("head.php");  ?>
+<?php include("head.php"); ?>
+
+<style>
+    a.card-link {
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        background-color: #fff;
+        padding: 1rem 1.5rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 1px 2px rgb(0 0 0 / 0.05);
+        text-decoration: none;
+        color: #1e293b;
+        cursor: pointer;
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+
+    a.card-link:hover,
+    a.card-link:focus {
+        background-color: #e2e8f0;
+        box-shadow: 0 4px 8px rgb(0 0 0 / 0.1);
+        outline: none;
+    }
+
+    a.card-link img {
+        width: 48px;
+        height: 48px;
+        flex-shrink: 0;
+        border-radius: 0.375rem;
+        background-color: white;
+        padding: 2px;
+        transition: transform 0.3s ease;
+    }
+
+    a.card-link:hover img,
+    a.card-link:focus img {
+        transform: scale(1.1);
+        box-shadow: 0 4px 12px rgb(0 0 0 / 0.15);
+    }
+
+    .card-text {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-center;
+    }
+
+    .card-title {
+        font-weight: 600;
+        font-size: 1.5rem;
+        color: #006316;
+    }
+
+    .card-subtitle {
+        font-size: 1.2rem;
+        color: #000;
+    }
+
+    .card-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+</style>
+
 <body>
     <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
     <div class="container">
@@ -25,6 +90,7 @@
                                 $page = $data?->content ? $data?->content : $data->page[0];
                                 $content = $page->content ?? "";
                                 $image = @$page->image;
+                                $link = @$page->link;
                                 $pdf = @$page->pdf;
                                 $title = @$page?->title;
                             }
@@ -50,8 +116,7 @@
                                                 <tr>
                                                     <td><?= $value->name ?></td>
                                                     <td style="width: 1%;"><a href="<?= $w_public_url . $value->src ?>">
-                                                        <i class="fa fa-eye"
-                                                                aria-hidden="true"></i></a></td>
+                                                            <i class="fa fa-eye" aria-hidden="true"></i></a></td>
                                                 </tr>
                                                 <?php
                                             } ?>
@@ -71,10 +136,42 @@
                                     <?php
                                     foreach ($image as $key => $value) {
                                         ?>
-                                        <img src="<?=$w_public_url . $value ?>">
+                                        <img src="<?= $w_public_url . $value ?>">
                                         <?php
                                     }
                                     ?>
+                                </div>
+                                <?php
+
+                            }
+                            ?>
+                            <?php
+                            if ($link) {
+                                ?>
+                                <div class="single_page_content">
+                                    <div class="row card-container">
+                                        <?php
+                                        foreach ($link as $key => $value) {
+                                            ?>
+                                            <a href="https://aceh.kemenag.go.id/" class="card-link">
+                                                    <img src="/files/images/logo_kemenag.png" alt="Logo Kemenag">
+                                                    <div class="card-text">
+                                                        <span class="card-title"><?= @$value?->title ?></span>
+                                                        <?php if ($value?->subtitle) {
+                                                            ?>
+                                                            <span class="card-subtitle"><?= @$value?->subtitle ?></span>
+                                                            <?php
+                                                        } ?>
+                                                    </div>
+                                                </a>
+                                            <!-- <div class="col-xs-1 col-sm-2 col-md-3 col-lg-4">
+                                                
+                                            </div> -->
+                                            <?php
+                                        }
+                                        ?>
+                                    </div>
+
                                 </div>
                                 <?php
 
