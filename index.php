@@ -42,7 +42,7 @@
                 foreach ($slider as $k => $v) {
                   $title = $v->title;
                   $subTitle = $v->subTitle;
-                  $img = $w_base_url . $v?->image?->url;
+                  $img = $w_public_url . $v?->image?->url;
                   ?>
                   <?php
 
@@ -53,9 +53,9 @@
 
                   <div class="single_featured_slide">
                     <a
-                      href="<?php $w_base_url . $link; ?>"><?php echo '<img height="309" src="' . $img . '" alt="..."/>'; ?></a>
+                      href="<?php $w_public_url . $link; ?>"><?php echo '<img height="309" src="' . $img . '" alt="..."/>'; ?></a>
                     <h4>
-                      <a href="<?php $w_base_url . $link; ?>"><?php echo $title; ?>
+                      <a href="<?php $w_public_url . $link; ?>"><?php echo $title; ?>
                       </a>
                     </h4>
                     <?= $subTitle ?>

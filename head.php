@@ -1,6 +1,7 @@
 <head>
     <?php
     $w_base_url = "http://localhost:1347";
+    $w_public_url = "http://145.79.13.109:1347";
     $w_context = stream_context_create(array(
         'http' => array('ignore_errors' => true),
     ));

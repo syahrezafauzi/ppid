@@ -5,7 +5,7 @@
         <div class="header_bottom_left">
           <?php if ($w_logo) {
             ?>
-            <img src="<?= $w_base_url . $w_logo?->url ?>" width="110%" />
+            <img src="<?= $w_public_url . $w_logo?->url ?>" width="110%" />
             <?php
           }
           ?>
@@ -31,7 +31,7 @@
           <?php
           ini_set('display_errors', 1);
           ini_set('display_startup_errors', 1);
-          $data = file_get_contents("http://localhost:1347/api/menus?populate=*", false, $w_context);
+          $data = file_get_contents($w_base_url. "/api/menus?populate=*", false, $w_context);
           $data = json_decode($data);
 
           $i = 0;
