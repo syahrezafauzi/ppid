@@ -149,21 +149,23 @@
                             if ($link) {
                                 ?>
                                 <div class="single_page_content">
-                                    <div class="row card-container">
+                                    <div class="card-container">
                                         <?php
                                         foreach ($link as $key => $value) {
+                                            @$toImage = @$value->toImage ? @"./cms_image.php".$value?->toImage : null;
+                                            @$url = $value->url;
                                             ?>
-                                            <a href="https://aceh.kemenag.go.id/" class="card-link">
-                                                    <img src="/files/images/logo_kemenag.png" alt="Logo Kemenag">
-                                                    <div class="card-text">
-                                                        <span class="card-title"><?= @$value?->title ?></span>
-                                                        <?php if ($value?->subtitle) {
-                                                            ?>
-                                                            <span class="card-subtitle"><?= @$value?->subtitle ?></span>
-                                                            <?php
-                                                        } ?>
-                                                    </div>
-                                                </a>
+                                            <a href="<?= $toImage ?? $url ?? "#"?>" class="card-link">
+                                                <img src="images/logo_kemenag.png" alt="Logo Kemenag">
+                                                <div class="card-text">
+                                                    <span class="card-title"><?= @$value?->title ?></span>
+                                                    <?php if ($value?->subtitle) {
+                                                        ?>
+                                                        <span class="card-subtitle"><?= @$value?->subtitle ?></span>
+                                                        <?php
+                                                    } ?>
+                                                </div>
+                                            </a>
                                             <!-- <div class="col-xs-1 col-sm-2 col-md-3 col-lg-4">
                                                 
                                             </div> -->
