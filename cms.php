@@ -152,7 +152,7 @@
                                     <div class="card-container">
                                         <?php
                                         foreach ($link as $key => $value) {
-                                            @$toImage = @$value->toImage ? @"./cms_image.php".$value?->toImage : null;
+                                            @$toImage = @$value->toImage ? @"./cms_image.php?url=".$value?->toImage : null;
                                             @$url = $value->url;
                                             ?>
                                             <a href="<?= $toImage ?? $url ?? "#"?>" class="card-link">
@@ -193,11 +193,11 @@
     <footer id="footer">
         <?php include('footer.php'); ?>
     </footer>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/wow.min.js"></script>
-    <script src="assets/js/slick.min.js"></script>
-    <script src="assets/js/custom.js"></script>
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/wow.min.js"></script>
+    <script src="/assets/js/slick.min.js"></script>
+    <script src="/assets/js/custom.js"></script>
 </body>
 
 </html>

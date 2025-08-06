@@ -82,16 +82,13 @@
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="single_page_area">
                             <?php
-                            $page = $_SERVER['REQUEST_URI'];
-                            $page = explode('/', $page);
-                            $page = array_slice($page, 2);
-                            $page = implode('/', $page);
-                            $url = $w_base_url . $page;
+                            $url = $_GET['url'];
+                            $url = $w_public_url . $url;
 
                             ?>
                             <h2 style="color:#000000;" class="post_titile"><?= $title ?></h2>
                             <div class="single_page_content">
-                                <?= $url ?>
+                                <img src="<?= $url ?>" /> 
                             </div>
                         </div>
                     </div>
@@ -107,11 +104,11 @@
     <footer id="footer">
         <?php include('footer.php'); ?>
     </footer>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/wow.min.js"></script>
-    <script src="assets/js/slick.min.js"></script>
-    <script src="assets/js/custom.js"></script>
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/wow.min.js"></script>
+    <script src="/assets/js/slick.min.js"></script>
+    <script src="/assets/js/custom.js"></script>
 </body>
 
 </html>
