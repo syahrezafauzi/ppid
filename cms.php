@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
-<?php include("head.php"); ?>
+<?php
+include("head.php");
+ini_set('display_errors', 0);
+error_reporting(0);
+error_reporting(E_ALL & ~E_WARNING); // Report everything except warnings
+
+?>
 
 <style>
     a.card-link {
@@ -98,7 +104,7 @@
                             ?>
                             <h2 style="color:#000000;" class="post_titile"><?= $title ?></h2>
                             <div class="single_page_content">
-                                <?= $content ?>
+                                <?= @$content ?>
                             </div>
                             <?php
                             if ($pdf) {
@@ -152,10 +158,10 @@
                                     <div class="card-container">
                                         <?php
                                         foreach ($link as $key => $value) {
-                                            @$toImage = @$value->toImage ? @"./cms_image.php?url=".$value?->toImage : null;
+                                            @$toImage = @$value->toImage ? @"./cms_image.php?url=" . $value?->toImage : null;
                                             @$url = $value->url;
                                             ?>
-                                            <a href="<?= $toImage ?? $url ?? "#"?>" class="card-link">
+                                            <a href="<?= $toImage ?? $url ?? "#" ?>" class="card-link">
                                                 <img src="images/logo_kemenag.png" alt="Logo Kemenag">
                                                 <div class="card-text">
                                                     <span class="card-title"><?= @$value?->title ?></span>
@@ -193,11 +199,11 @@
     <footer id="footer">
         <?php include('footer.php'); ?>
     </footer>
-    <script src="/assets/js/jquery.min.js"></script>
-    <script src="/assets/js/bootstrap.min.js"></script>
-    <script src="/assets/js/wow.min.js"></script>
-    <script src="/assets/js/slick.min.js"></script>
-    <script src="/assets/js/custom.js"></script>
+    <script src="<?= site_url() ?>/assets/js/jquery.min.js"></script>
+    <script src="<?= site_url() ?>/assets/js/bootstrap.min.js"></script>
+    <script src="<?= site_url() ?>/assets/js/wow.min.js"></script>
+    <script src="<?= site_url() ?>/assets/js/slick.min.js"></script>
+    <script src="<?= site_url() ?>/assets/js/custom.js"></script>
 </body>
 
 </html>

@@ -31,14 +31,14 @@
           <?php
           ini_set('display_errors', 1);
           ini_set('display_startup_errors', 1);
-          $data = file_get_contents($w_base_url. "/api/menus?populate=*", false, $w_context);
+          $data = file_get_contents($w_base_url. "/api/navigation/render/ak7orddvmsnfr0abqtvhddrq?type=TREE", false, $w_context);
           $data = json_decode($data);
 
           $i = 0;
-          if ($data?->data) {
-            foreach ($data?->data as $k => $v) {
+          if ($data) {
+            foreach ($data as $k => $v) {
               $title = $v->title;
-              $pages = $v->page;
+              $pages = $v->items;
               $url = $v->content?->url ?? "#";
               $class = $pages == null ? "" : "dropdown";
               ?>
@@ -47,7 +47,7 @@
                   <ul class="dropdown-menu" role="menu">
                     <?php foreach ($pages as $k => $v):
                       $title = $v->title;
-                      $url = $v->url ?? "#";
+                      $url = $v->path ?? "#";
                       ?>
                       <li><a href="<?= $url ? "cms.php?page=" . $url : $url ?>"><?= $title ?></a></li>
                     <?php endforeach; ?>
