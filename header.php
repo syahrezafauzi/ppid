@@ -31,7 +31,7 @@
           <?php
           ini_set('display_errors', 1);
           ini_set('display_startup_errors', 1);
-          $data = file_get_contents($w_base_url. "/api/navigation/render/ak7orddvmsnfr0abqtvhddrq?type=TREE", false, $w_context);
+          $data = file_get_contents($w_base_url . "/api/navigation/render/ak7orddvmsnfr0abqtvhddrq?type=TREE", false, $w_context);
           $data = json_decode($data);
 
           $i = 0;
@@ -39,7 +39,8 @@
             foreach ($data as $k => $v) {
               $title = $v->title;
               $pages = $v->items;
-              $url = $v->content?->url ?? "#";
+              $url = explode("/", $v->path);
+              $url = array_key_exists(1, $url) ? "" : "#";
               $class = $pages == null ? "" : "dropdown";
               ?>
               <li class="<?= $class ?>"><a href="<?= $url ?>"><?= $title ?></a>
@@ -47,9 +48,11 @@
                   <ul class="dropdown-menu" role="menu">
                     <?php foreach ($pages as $k => $v):
                       $title = $v->title;
-                      $url = $v->path ?? "#";
+
+                      $url2 = explode("/", $v->path);
+                      $url2 = array_key_exists(1, $url2) ? "cms.php?url=" . $url2[1] : "#";
                       ?>
-                      <li><a href="<?= $url ? "cms.php?page=" . $url : $url ?>"><?= $title ?></a></li>
+                      <li><a href="<?= $url2 ?>"><?= $title ?></a></li>
                     <?php endforeach; ?>
                   </ul>
 

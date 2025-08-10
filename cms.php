@@ -88,12 +88,11 @@ error_reporting(E_ALL & ~E_WARNING); // Report everything except warnings
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="single_page_area">
                             <?php
-                            $page = $_GET['page'];
-                            $data = file_get_contents($w_base_url . "/api/menus/view?url=" . $page);
+                            $page = $_GET['url'];
+                            $data = file_get_contents($w_base_url . "/api/page/view?url=" . $page);
                             $data = json_decode($data);
                             if ($data != null) {
-                                $data = $data[0];
-                                $page = $data?->content ? $data?->content : $data->page[0];
+                                $page = $data[0];
                                 $content = $page->content ?? "";
                                 $image = @$page->image;
                                 $link = @$page->link;
@@ -158,10 +157,10 @@ error_reporting(E_ALL & ~E_WARNING); // Report everything except warnings
                                     <div class="card-container">
                                         <?php
                                         foreach ($link as $key => $value) {
-                                            @$toImage = @$value->toImage ? @"./cms_image.php?url=" . $value?->toImage : null;
+                                            @$toImage = @$value?->page ? site_url() . @"/cms.php?url=" . $value?->page : null;
                                             @$url = $value->url;
                                             ?>
-                                            <a href="<?= $toImage ?? $url ?? "#" ?>" class="card-link">
+                                            <a href="<?= $url ?? $toImage ?? "#" ?>" class="card-link">
                                                 <img src="images/logo_kemenag.png" alt="Logo Kemenag">
                                                 <div class="card-text">
                                                     <span class="card-title"><?= @$value?->title ?></span>
