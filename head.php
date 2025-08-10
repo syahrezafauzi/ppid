@@ -16,17 +16,36 @@
     $w_sites = $data?->sites;
     $w_media = $data?->media;
     $w_logo = $data?->logo;
+    function site_url($path = '')
+    {
+        // Detect protocol
+        $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
+
+        // Get host and script directory
+        $host = $_SERVER['HTTP_HOST'];
+        $script_dir = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\');
+
+        // Build base URL
+        $base_url = $protocol . $host . $script_dir;
+
+        // Append path if provided
+        if ($path) {
+            $base_url .= '/' . ltrim($path, '/');
+        }
+
+        return $base_url;
+    }
     ?>
     <title><?= $w_name ?></title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/animate.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/slick.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/theme.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="<?= site_url() ?>/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="<?= site_url() ?>/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="<?= site_url() ?>/assets/css/animate.css">
+    <link rel="stylesheet" type="text/css" href="<?= site_url() ?>/assets/css/slick.css">
+    <link rel="stylesheet" type="text/css" href="<?= site_url() ?>/assets/css/theme.css">
+    <link rel="stylesheet" type="text/css" href="<?= site_url() ?>/assets/css/style.css">
     <style>
         #myTable {
             border-collapse: collapse;
