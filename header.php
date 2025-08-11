@@ -40,19 +40,22 @@
               $title = $v->title;
               $pages = $v->items;
               $url = explode("/", $v->path);
-              $url = array_key_exists(1, $url) ? "" : "#";
+              $url = $url[1] ? site_url() . "/cms.php?url=" . $url[1] : "#";
               $class = $pages == null ? "" : "dropdown";
+
               ?>
               <li class="<?= $class ?>"><a href="<?= $url ?>"><?= $title ?></a>
+                <?php unset($url); ?>
                 <?php if ($pages) { ?>
                   <ul class="dropdown-menu" role="menu">
                     <?php foreach ($pages as $k => $v):
                       $title = $v->title;
 
-                      $url2 = explode("/", $v->path);
-                      $url2 = array_key_exists(1, $url2) ? "cms.php?url=" . $url2[1] : "#";
+                      $url = explode("/", $v->path);
+                      $url = $url[1] ? site_url() . "/cms.php?url=" . $url[1] : "#";
                       ?>
-                      <li><a href="<?= $url2 ?>"><?= $title ?></a></li>
+                      <li><a href="<?= $url ?>"><?= $title ?></a></li>
+                      <?php unset($url); ?>
                     <?php endforeach; ?>
                   </ul>
 
