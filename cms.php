@@ -161,7 +161,7 @@ error_reporting(E_ALL & ~E_WARNING); // Report everything except warnings
                                             @$url = $value->url;
                                             ?>
                                             <a href="<?= $url ?? $toImage ?? "#" ?>" class="card-link">
-                                                <img src="images/logo_kemenag.png" alt="Logo Kemenag">
+                                                <img src="<?= $w_public_url . $value?->icon ?>" alt="Logo Kemenag">
                                                 <div class="card-text">
                                                     <span class="card-title"><?= @$value?->title ?></span>
                                                     <?php if ($value?->subtitle) {
