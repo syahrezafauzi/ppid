@@ -75,32 +75,44 @@ error_reporting(E_ALL & ~E_WARNING); // Report everything except warnings
 <body>
     <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
     <div class="container">
-        <?php include('header.php'); ?>
 
+        <?php include('header.php'); ?>
+        <?php
+        $page = $_GET['url'];
+        unset($data);
+        $data = file_get_contents($w_base_url . "/api/page/view?url=" . $page);
+        $data = json_decode($data);
+        if ($data != null) {
+            $page = $data[0];
+            $content = $page->content ?? "";
+            $image = @$page->image;
+            $link = @$page->link;
+            $pdf = @$page->pdf;
+            $title = @$page?->title;
+            $other = $page?->other;
+            $dip = $other->{"page.dip"};
+            $excludePanel = $page->excludePanel;
+            $withLeft = $excludePanel == null || $excludePanel && !in_array("Left", $excludePanel);
+            $withRight = $excludePanel == null || $excludePanel && !in_array("Right", $excludePanel);
+            $colLeft = $withLeft ? "col-lg-3 col-md-3 col-sm-3" : "";
+            $colRight = $withRight ? "col-lg-3 col-md-3 col-sm-3" : "";
+            if($colLeft && $colRight) $colMid = "col-lg-6 col-md-6 col-sm-6";
+            else if($colLeft || $colRight) $colMid = "col-lg-9 col-md-9 col-sm-9";
+            else if(!$colLeft && !$colRight) $colMid = "col-lg-12 col-md-12 col-sm-12";
+        }
+
+        ?>
         <section id="mainContent">
             <div class="content_top">
                 <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-3">
+                    <div class="<?= $colLeft ?>">
                         <div class="content_middle_leftbar">
-                            <?php include('side-left.php'); ?>
+                            <?php if ($withLeft)
+                                include('side-left.php'); ?>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="<?= $colMid ?>">
                         <div class="single_page_area">
-                            <?php
-                            $page = $_GET['url'];
-                            $data = file_get_contents($w_base_url . "/api/page/view?url=" . $page);
-                            $data = json_decode($data);
-                            if ($data != null) {
-                                $page = $data[0];
-                                $content = $page->content ?? "";
-                                $image = @$page->image;
-                                $link = @$page->link;
-                                $pdf = @$page->pdf;
-                                $title = @$page?->title;
-                            }
-
-                            ?>
                             <h2 style="color:#000000;" class="post_titile"><?= $title ?></h2>
                             <div class="single_page_content">
                                 <?= @$content ?>
@@ -184,11 +196,66 @@ error_reporting(E_ALL & ~E_WARNING); // Report everything except warnings
 
                             }
                             ?>
+                            <?php
+                            if ($dip) {
+                                ?>
+                                <div class="single_page_content table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <th>No.</th>
+                                            <th>Judul Informasi</th>
+                                            <th>Ringkasan</th>
+                                            <th>Pejabat yang menguasai informasi</th>
+                                            <th>Penanggung jawab pembuatan informasi</th>
+                                            <th>Waktu, tempat pembuatan/penerbitan informasi</th>
+                                            <th>Bentuk informasi yang tersedia </th>
+                                            <th>Jangka waktu penyimpanan</th>
+                                            <th>Jenis media yang memuat informasi</th>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            foreach ($dip as $key => $value) {
+                                                $bentuk = implode(", ", $value->bentuk_tersedia);
+                                                $file = $value?->media->file;
+                                                $page = $value?->media->page;
+                                                if ($file)
+                                                    $src = $w_public_url . $file;
+                                                else if ($page)
+                                                    $src = site_url() . "/cms.php?url=" . $page;
+
+                                                ?>
+                                                <tr>
+                                                    <td><?= $key + 1 ?></td>
+                                                    <td><?= @$value->judul_informasi ?></td>
+                                                    <td><?= @$value->ringkasan ?></td>
+                                                    <td><?= @$value->pejabat_menguasai ?></td>
+                                                    <td><?= @$value->pjp_info ?></td>
+                                                    <td><?= @$value->waktu_pembuatan ?></td>
+                                                    <td><?= @$bentuk ?></td>
+                                                    <td><?= @$value->jangka_simpan ?></td>
+                                                    <td>
+                                                        <a href="<?= $src ?>">
+                                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <?php
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                                <?php
+
+                            }
+                            ?>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-3 col-sm-3">
+                    <div class="<?= $colRight ?>">
                         <div class="content_middle_rightbar">
-                            <?php include('side-right.php'); ?>
+                            <?php if ($withRight)
+                                include('side-right.php'); ?>
                         </div>
                     </div>
                 </div>
